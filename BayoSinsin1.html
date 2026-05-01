@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bayo Sinsin | Informatique de Gestion</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- VARIABLES PREMIUM DARK TECH --- */
+        :root {
+            --electric: #00D4FF;   /* Cyan tech pour les accents */
+            --electric-hover: #0096FF;
+            --white: #FFFFFF;
+            --text-muted: #9CA3AF; /* Gris clair pour la lecture */
+            --glass-bg: rgba(15, 23, 42, 0.4); /* Fond effet verre */
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--white);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            
+            /* L'IMAGE DE FOND AVEC OVERLAY SOMBRE */
+            /* J'utilise une image libre de droit d'Unsplash représentant la tech/data */
+            background-image: 
+                linear-gradient(rgba(5, 11, 20, 0.88), rgba(5, 11, 20, 0.95)), 
+                url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* L'image reste fixe quand on scroll */
+        }
+
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(5, 11, 20, 0.5);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .brand { font-weight: 800; font-size: 1.4rem; letter-spacing: -0.5px; }
+        .brand span { color: var(--electric); }
+
+        .btn-nav {
+            background: transparent;
+            color: var(--electric);
+            padding: 10px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid var(--electric);
+            transition: all 0.3s ease;
+        }
+
+        .btn-nav:hover { 
+            background: var(--electric); 
+            color: #050b14;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.4); 
+        }
+
+        /* --- SECTION HERO --- */
+        .hero {
+            padding: 180px 8% 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.2rem);
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #00D4FF, #635BFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 650px;
+        }
+
+        /* --- SECTION COMPÉTENCES (GLASSMORPHISM) --- */
+        .section-wrapper { padding: 80px 8%; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.2rem; margin-bottom: 15px; }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* Les Cartes en Verre Dépoli */
+        .card {
+            background: var(--glass-bg);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px); /* L'effet magique du verre */
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255,255,255,0.02);
+            background: rgba(30, 41, 59, 0.6);
+        }
+
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--electric);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+
+        .card h3 { font-size: 1.2rem; margin-bottom: 12px; letter-spacing: 0.5px; }
+        .card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+        /* Projet Phare */
+        .project-banner {
+            background: linear-gradient(135deg, rgba(99, 91, 255, 0.2), rgba(0, 212, 255, 0.05));
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 50px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .tag { background: rgba(0, 212, 255, 0.15); color: var(--electric); padding: 6px 14px; border-radius: 50px; font-size: 0.8rem; margin-right: 10px; border: 1px solid rgba(0, 212, 255, 0.3);}
+
+        /* --- SECTION FOOTER / CONTACT --- */
+        footer {
+            background: rgba(2, 6, 12, 0.8);
+            border-top: 1px solid var(--glass-border);
+            padding: 80px 8% 40px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-links a:hover { color: var(--electric); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="brand">Bayo<span>Sinsin</span></div>
+        <a href="mailto:bayosinsin@gmail.com" class="btn-nav">Travaillons ensemble</a>
+    </nav>
+
+    <section class="hero">
+       <h1>Transformer la logique métier en <span>Solutions Logicielles</span></h1>
+        <p>Diplômé en Informatique de Gestion (TECHNOLAB ISTA). Je conçois des bases de données résilientes et des logiciels sur mesure pour propulser l'efficacité de votre entreprise.</p>
+    </section>
+
+    <section class="section-wrapper">
+        <div class="section-header">
+            <h2>Piliers d'Expertise</h2>
+        </div>
+        
+        <div class="grid-3">
+            <div class="card">
+                <div class="icon-box">⚙️</div>
+                <h3>Développement Java</h3>
+                <p>Création d'architectures backend solides, conception d'interfaces via Java Swing et automatisation des processus de gestion interne.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon-box">🗄️</div>
+                <h3>Architecture MySQL</h3>
+                <p>Modélisation de bases de données sécurisées, intégration de systèmes CRUD, et garantie de l'intégrité des flux d'informations.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon-box">📊</div>
+                <h3>Analyse de Gestion</h3>
+                <p>Traduction précise des besoins administratifs et financiers en outils digitaux fluides et hautement performants.</p>
+            </div>
+        </div>
+
+        <div class="project-banner">
+            <div class="project-info">
+                <div style="margin-bottom: 15px;">
+                    <span class="tag">Logistique</span>
+                    <span class="tag">Design IT</span>
+                </div>
+                <h3 style="font-size: 1.8rem; margin-bottom: 10px;">Projet : Air Buwatun</h3>
+                <p style="color: var(--text-muted); max-width: 500px;">Modernisation de l'identité et optimisation des processus pour un service de transport par autocar innovant.</p>
+            </div>
+            <div class="project-action">
+                <a href="mailto:bayosinsin@gmail.com" class="btn-nav">Discuter de ce projet</a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <h2 style="margin-bottom: 40px; font-size: 2.2rem;">Démarrons un projet.</h2>
+        <div class="contact-links">
+            <a href="mailto:bayosinsin@gmail.com"><span>✉️</span> bayosinsin@gmail.com</a>
+            <a href="tel:+22367637720"><span>📞</span> +223 67 63 77 20</a>
+            <span style="color: var(--text-muted); display: flex; align-items: center; gap: 8px;"><span>📍</span> Kayes / Bamako</span>
+        </div>
+        <p style="color: #4B5563; font-size: 0.9rem; margin-top: 50px;">© 2026 Bayo Sinsin. Informatique de Gestion.</p>
+    </footer>
+
+</body>
+</html>
